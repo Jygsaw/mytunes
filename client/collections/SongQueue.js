@@ -8,7 +8,22 @@ var SongQueue = Backbone.Collection.extend({
         this.playFirst();
       }
     });
+
+    // event handler for song ended event
+    this.on('ended', function(song) {
+      this.remove(song);
+      if (this.length >= 1) {
+        this.playFirst();
+      }
+    }, this);
+
+    // event handler for dequeue event
+    this.on('dequeue', function(song){
+      this.remove(song);
+    }, this);
   },
+
+  // function to play first song in queue if available
   playFirst: function() {
     this.at(0).play();
   }
