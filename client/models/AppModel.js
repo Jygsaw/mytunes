@@ -24,5 +24,12 @@ var AppModel = Backbone.Model.extend({
       // add the song to our songQueue array
       params.songqueue.add(song);
     }, this);
+
+    // event handler for dequeue event to stop player
+    params.songqueue.on('dequeue', function(song) {
+      if (params.songqueue.length === 0) {
+        this.set('currentSong', undefined);
+      }
+    }, this);
   },
 });
