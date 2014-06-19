@@ -3,7 +3,6 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
 
   initialize: function(){
-    console.log('songQueue is running');
   }
 
 });
