@@ -16,7 +16,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     // event handler for the queue event
-    params.library.on('queue', function(song){
+    params.library.on('enqueue', function(song){
       // get the songQueue array
       var ourQueue = this.get('songQueue');
       // add the song to our songQueue array
