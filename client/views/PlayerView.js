@@ -9,7 +9,6 @@ var PlayerView = Backbone.View.extend({
   },
   events: {
     'ended': function() {
-      console.log('ended song');
       this.model.ended();
     }
   },
