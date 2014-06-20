@@ -15,7 +15,7 @@ describe('SongQueueEntryView', function() {
     it('dequeues the song', function() {
       sinon.spy(SongModel.prototype, 'dequeue');
 
-      view.$el.children().first().click();
+      view.$el.children('.songtitle').first().click();
       expect(model.dequeue).to.have.been.called;
 
       SongModel.prototype.dequeue.restore();
