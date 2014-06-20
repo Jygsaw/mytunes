@@ -9,8 +9,6 @@ var SongModel = Backbone.Model.extend({
   play: function(){
     // Triggering an event here will also trigger the event on the collection
     this.trigger('play', this);
-    // Increment
-    this.set('playCount', this.get('playCount')+1);
   },
   ended: function() {
     // Trigger the ended event
@@ -24,9 +22,12 @@ var SongModel = Backbone.Model.extend({
       // Trigger the dequeue event
     this.trigger('dequeue', this);
   },
+  plusPlay: function() {
+    this.set('playCount', this.get('playCount')+1);
+  },
   voteup: function(){
     // Trigger the voteup event
-    this.trigger('votedown', this);
+    this.trigger('voteup', this);
     // Increment the rating of the song
     this.set('rating', this.get('rating')+1);
   },
@@ -35,6 +36,14 @@ var SongModel = Backbone.Model.extend({
     this.trigger('votedown', this);
     // Decrement the rating of the song
     this.set('rating', this.get('rating')-1);
+  },
+  songup: function(){
+    // Trigger the voteup event
+    this.trigger('songup', this);
+  },
+  songdown: function(){
+    // Trigger the votedown event
+    this.trigger('songdown', this);
   }
 
 });

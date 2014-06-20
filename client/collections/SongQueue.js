@@ -24,10 +24,38 @@ var SongQueue = Backbone.Collection.extend({
         this.playFirst();
       }
     }, this);
+
+    // event handler for songup event
+    this.on('songup', function(song){
+      this.moveUp(song);
+    }, this);
+
+    // event handler for songdown event
+    this.on('songdown', function(song){
+      this.moveDown(song);
+    }, this);
   },
 
   // function to play first song in queue if available
   playFirst: function() {
     this.at(0).play();
+  },
+
+  moveUp: function(model) { // I see move up as the -1
+    var index = this.indexOf(model);
+    if (index > 0) {
+      this.remove(model, {silent: true}); // silence this to stop excess event triggers
+      this.add(model, {at: index-1});
+      this.playFirst();
+    }
+  },
+
+  moveDown: function(model) { // I see move up as the -1
+    var index = this.indexOf(model);
+    if (index < this.length - 1) {
+      this.remove(model, {silent: true}); // silence this to stop excess event triggers
+      this.add(model, {at: index+1});
+      this.playFirst();
+    }
   }
 });
